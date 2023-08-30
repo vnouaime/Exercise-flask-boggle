@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Boggle</title>
+    </head>
+    <body>
+        <section id="boggle">
+
+            <table class="board">
+                <tbody>
+                    {% for row in board %}
+                    <tr>
+                        {% for cell in row %}
+                        <td>{{ cell }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            
+            <form method="GET" id="add-word">
+                <!-- Asks for user's input on word as a get request to send back to the server -->
+                <input name="word" id="word" autofocus>
+                <button type="submit">Enter</button>
+            </form>
+            
+            <div>
+                <!-- Will show session stored high score and number of plays -->
+                <div>High Score: <b>{{ highscore }}</b></div>
+                <div>Number of Plays: {{ nplays }}</div>
+            </div>
+            
+            <div id="stats">
+                <!-- Shows how many seconds left and current score -->
+                <div>Seconds Left: <span id="timer"></span></div>
+                <div>Score: <span id="score">0</span></div>
+            </div>
+
+            <h3>Messages:</h3>
+            <div id="messages">
+                <!-- Will show messages that Javascript sends back from the server -->
+            </div>
+
+            <div id="words">
+                <!-- Will show user's current list of words-->
+                <h3>Your List of Words:</h3>
+                <ul id="list_of_words"></ul>
+            </div>
+    
+        </section>
+        <script src="http://unpkg.com/jquery"></script>
+        <script src="https://unpkg.com/axios@0.19.0/dist/axios.js"></script>
+        <script src="/static/boggle.js"></script>
+        <script>
+            let game = new BoggleGame(60);
+        </script>
+    </body>
+</html>
